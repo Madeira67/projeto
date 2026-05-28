@@ -1,0 +1,19 @@
+function realizar_Login() {
+    let email
+    email=prompt("Qual é o seu email?")
+    let senha
+    senha=prompt("Crie uma senha")
+}
+realizar_Login()
+let obra
+obra=prompt("Você quer ver um filme ou uma série?")
+let resposta
+resposta=obra.toLowerCase()
+function adicionar_obra(obra) {
+    if(resposta=="filme") {
+        obra=prompt("Que filme você quer ver?")
+    }else if(resposta=="série") {
+        obra=prompt("Que série você quer ver?")
+    }
+}
+adicionar_obra()
