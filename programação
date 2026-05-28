@@ -9,11 +9,21 @@ let obra
 obra=prompt("Você quer ver um filme ou uma série?")
 let resposta
 resposta=obra.toLowerCase()
-function adicionar_obra(obra) {
+function pesquisar_obra(obra) {
     if(resposta=="filme") {
         obra=prompt("Que filme você quer ver?")
     }else if(resposta=="série") {
         obra=prompt("Que série você quer ver?")
+    }
+}
+pesquisar_obra()
+let lista
+lista=prompt("Você deseja adicionar a obra na lista de desejos?")
+let resposta1
+resposta1=lista.toLowerCase()
+function adicionar_obra(lista) {
+    if(resposta1=="sim") {
+        console.log("Obra adicionada!")
     }
 }
 adicionar_obra()
