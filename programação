@@ -27,3 +27,91 @@ function adicionar_obra(lista) {
     }
 }
 adicionar_obra()
+let nota
+let analise
+let statusCurtida = false
+let statusConcluido = false
+let episodiosVistos = 0
+
+function avaliar_obra() {
+    nota = parseFloat(prompt("Dê uma nota de 0 a 5 estrelas para a obra"))
+    analise = prompt("Escreva sua análise sobre a obra")
+
+    let curtiu = prompt("Você curtiu a obra? (sim/não)").toLowerCase()
+    if (curtiu == "sim") {
+        statusCurtida = true
+    }
+
+    if (resposta == "série") {
+        let tipoSerie = prompt("Você quer avaliar a série inteira ou um episódio específico? (inteira/episodio)").toLowerCase()
+
+        if (tipoSerie == "inteira") {
+            let concluiu = prompt("Você concluiu a série? (sim/não)").toLowerCase()
+            if (concluiu == "sim") {
+                statusConcluido = true
+            } else {
+                episodiosVistos = parseInt(prompt("Quantos episódios você já assistiu?"))
+            }
+        } else if (tipoSerie == "episodio") {
+            let ep = parseInt(prompt("Qual episódio você quer avaliar?"))
+            console.log("Você está avaliando o episódio " + ep)
+        }
+    }
+
+    console.log("Nota atribuída: " + nota)
+    console.log("Análise: " + analise)
+}
+
+avaliar_obra()
+
+
+let obras = []
+
+function infos_obra(nomeObra) {
+    let obraInfo = {
+        nome: nomeObra,
+        tipo: resposta,
+        nota: nota,
+        analise: analise,
+        curtida: statusCurtida,
+        concluida: statusConcluido,
+        episodios: episodiosVistos
+    }
+
+    obras.push(obraInfo)
+}
+
+infos_obra()
+
+function listar_obras() {
+    console.log("===== LISTA DE OBRAS =====")
+    for (let i = 0; i < obras.length; i++) {
+        console.log("Nome: " + obras[i].nome)
+        console.log("Tipo: " + obras[i].tipo)
+        console.log("Nota: " + obras[i].nota)
+        console.log("Análise: " + obras[i].analise)
+        console.log("Curtida: " + obras[i].curtida)
+        console.log("Concluída: " + obras[i].concluida)
+        console.log("Episódios vistos: " + obras[i].episodios)
+        console.log("----------------------")
+    }
+}
+let continuar = "sim"
+while (continuar == "sim") {
+continuar = prompt("Você quer avaliar outra obra? (sim/não)").toLowerCase()
+if (continuar == "sim") {
+        obra = prompt("Filme ou série?")
+        resposta = obra.toLowerCase()
+pesquisar_obra()
+
+        lista = prompt("Deseja adicionar na lista? (sim/não)")
+        resposta1 = lista.toLowerCase()
+adicionar_obra()
+
+avaliar_obra()
+
+infos_obra(obra)
+    }
+}
+
+listar_obras()
