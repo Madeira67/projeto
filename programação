@@ -1,9 +1,9 @@
 function realizar_Login() {
     let email
-    email = prompt("Qual é o seu email?")
+    email = prompt("Qual é o seu email? ")
 
     let senha
-    senha = prompt("Crie uma senha")
+    senha = prompt("Crie uma senha: ")
 }
 realizar_Login()
 let obra
