@@ -6,6 +6,7 @@ function realizar_Login() {
     senha = prompt("Crie uma senha: ")
 }
 realizar_Login()
+
 let obra
 let resposta
 let lista
@@ -18,32 +19,76 @@ let episodiosVistos = 0
 let nomeObra
 
 let obras = []
+
 function pesquisar_obra() {
     if (resposta == "filme") {
         nomeObra = prompt("Que filme você quer ver? ")
-    } else if (resposta == "serie") {
+    } else if (resposta == "serie" || resposta == "série") {
         nomeObra = prompt("Que série você quer ver? ")
     } else {
-        console.log("Tipo de obra inválido! ")
+        console.log("Tipo de obra inválido!")
     }
 }
+
 function adicionar_obra() {
     if (resposta1 == "sim") {
-        console.log("Obra adicionada! ")
+
+        let obraInfo = {
+            nome: nomeObra,
+            tipo: resposta,
+            nota: null,
+            analise: "",
+            curtida: false,
+            concluida: false,
+            episodios: 0
+        }
+
+        obras.push(obraInfo)
+
+        console.log("Obra adicionada!")
     }
 }
+
 function avaliar_obra() {
-nota = parseFloat(prompt("Dê uma nota de 0 a 5 estrelas para a obra: "))
-analise = prompt("Escreva sua análise sobre a obra: ")
-let curtiu = prompt("Você curtiu a obra? (sim/não) ").toLowerCase()
-statusCurtida = false
-statusConcluido = false
-episodiosVistos = 0
+
+    let obraAvaliada = prompt("Digite o nome da obra que deseja avaliar: ")
+
+    let indice = -1
+
+    for (let i = 0; i < obras.length; i++) {
+        if (obras[i].nome.toLowerCase() == obraAvaliada.toLowerCase()) {
+            indice = i
+            break
+        }
+    }
+
+    if (indice == -1) {
+        console.log("Obra não encontrada!")
+        return
+    }
+
+    nota = parseFloat(prompt("Dê uma nota de 0 a 5 estrelas para a obra: "))
+    analise = prompt("Escreva sua análise sobre a obra: ")
+
+    let curtiu = prompt("Você curtiu a obra? (sim/não) ").toLowerCase()
+
+    statusCurtida = false
+    statusConcluido = false
+    episodiosVistos = 0
+
     if (curtiu == "sim") {
         statusCurtida = true
     }
 
-    if (resposta == "série") {
+    if (obras[indice].tipo == "filme") {
+
+        let concluiu = prompt("Você assistiu o filme até o final? (sim/não) ").toLowerCase()
+
+        if (concluiu == "sim") {
+            statusConcluido = true
+        }
+
+    } else if (obras[indice].tipo == "serie" || obras[indice].tipo == "série") {
 
         let tipoSerie = prompt("Você quer avaliar a série inteira ou um episódio específico? (inteira/episodio) ").toLowerCase()
 
@@ -54,36 +99,25 @@ episodiosVistos = 0
             if (concluiu == "sim") {
                 statusConcluido = true
             } else {
-                episodiosVistos = parseInt(prompt("Quantos episódios você já assistiu?"))
+                episodiosVistos = parseInt(prompt("Quantos episódios você já assistiu? "))
             }
 
         } else if (tipoSerie == "episodio") {
 
             let ep = parseInt(prompt("Qual episódio você quer avaliar? "))
-
             console.log("Você está avaliando o episódio " + ep)
+
         }
     }
 
-console.log("Nota atribuída: " + nota)
-console.log("Análise: " + analise)
-}
+    obras[indice].nota = nota
+    obras[indice].analise = analise
+    obras[indice].curtida = statusCurtida
+    obras[indice].concluida = statusConcluido
+    obras[indice].episodios = episodiosVistos
 
-function infos_obra(nomeObra) {
-
-    let obraInfo = {
-        nome: nomeObra,
-        tipo: resposta,
-        nota: nota,
-        analise: analise,
-        curtida: statusCurtida,
-        concluida: statusConcluido,
-        episodios: episodiosVistos
-    }
-
-   obras[obras.length] = obraInfo
-
-    console.log("Obra salva com sucesso! ")
+    console.log("Nota atribuída: " + nota)
+    console.log("Análise: " + analise)
 }
 
 function listar_obras() {
@@ -105,28 +139,32 @@ function listar_obras() {
 
 function pesquisar_cadastrada() {
 
-let busca=prompt("Digite o nome da obra que deseja procurar: ")
-let encontrada=false
-  for (let i = 0;i<obras.length;i++) {
+    let busca = prompt("Digite o nome da obra que deseja procurar: ")
+    let encontrada = false
 
-    if (obras[i].nome.toLowerCase() == busca.toLowerCase()) {
+    for (let i = 0; i < obras.length; i++) {
 
-        console.log("===== OBRA ENCONTRADA =====")
-        console.log("Nome: " + obras[i].nome)
-        console.log("Tipo: " + obras[i].tipo)
-        console.log("Nota: " + obras[i].nota)
-        console.log("Análise: " + obras[i].analise)
-          encontrada = true
+        if (obras[i].nome.toLowerCase() == busca.toLowerCase()) {
+
+            console.log("===== OBRA ENCONTRADA =====")
+            console.log("Nome: " + obras[i].nome)
+            console.log("Tipo: " + obras[i].tipo)
+            console.log("Nota: " + obras[i].nota)
+            console.log("Análise: " + obras[i].analise)
+
+            encontrada = true
         }
     }
 
     if (encontrada == false) {
-        console.log("Obra não encontrada! ")
+        console.log("Obra não encontrada!")
     }
 }
 
 function menu() {
-let opcao = ""
+
+    let opcao = ""
+
     while (opcao != "5") {
 
         console.log("===== MENU =====")
@@ -153,7 +191,6 @@ let opcao = ""
         } else if (opcao == "2") {
 
             avaliar_obra()
-            infos_obra(nomeObra)
 
         } else if (opcao == "3") {
 
@@ -165,12 +202,13 @@ let opcao = ""
 
         } else if (opcao == "5") {
 
-            console.log("Programa encerrado! ")
+            console.log("Programa encerrado!")
 
         } else {
 
-            console.log("Opção inválida! ")
+            console.log("Opção inválida!")
         }
     }
 }
+
 menu()
