@@ -20,22 +20,22 @@ let nomeObra
 let obras = []
 function pesquisar_obra() {
     if (resposta == "filme") {
-        nomeObra = prompt("Que filme você quer ver?")
+        nomeObra = prompt("Que filme você quer ver? ")
     } else if (resposta == "serie") {
-        nomeObra = prompt("Que série você quer ver?")
+        nomeObra = prompt("Que série você quer ver? ")
     } else {
-        console.log("Tipo de obra inválido!")
+        console.log("Tipo de obra inválido! ")
     }
 }
 function adicionar_obra() {
     if (resposta1 == "sim") {
-        console.log("Obra adicionada!")
+        console.log("Obra adicionada! ")
     }
 }
 function avaliar_obra() {
-nota = parseFloat(prompt("Dê uma nota de 0 a 5 estrelas para a obra"))
-analise = prompt("Escreva sua análise sobre a obra")
-let curtiu = prompt("Você curtiu a obra? (sim/não)").toLowerCase()
+nota = parseFloat(prompt("Dê uma nota de 0 a 5 estrelas para a obra: "))
+analise = prompt("Escreva sua análise sobre a obra: ")
+let curtiu = prompt("Você curtiu a obra? (sim/não) ").toLowerCase()
 statusCurtida = false
 statusConcluido = false
 episodiosVistos = 0
@@ -45,11 +45,11 @@ episodiosVistos = 0
 
     if (resposta == "série") {
 
-        let tipoSerie = prompt("Você quer avaliar a série inteira ou um episódio específico? (inteira/episodio)").toLowerCase()
+        let tipoSerie = prompt("Você quer avaliar a série inteira ou um episódio específico? (inteira/episodio) ").toLowerCase()
 
         if (tipoSerie == "inteira") {
 
-            let concluiu = prompt("Você concluiu a série? (sim/não)").toLowerCase()
+            let concluiu = prompt("Você concluiu a série? (sim/não) ").toLowerCase()
 
             if (concluiu == "sim") {
                 statusConcluido = true
@@ -59,7 +59,7 @@ episodiosVistos = 0
 
         } else if (tipoSerie == "episodio") {
 
-            let ep = parseInt(prompt("Qual episódio você quer avaliar?"))
+            let ep = parseInt(prompt("Qual episódio você quer avaliar? "))
 
             console.log("Você está avaliando o episódio " + ep)
         }
@@ -83,7 +83,7 @@ function infos_obra(nomeObra) {
 
    obras[obras.length] = obraInfo
 
-    console.log("Obra salva com sucesso!")
+    console.log("Obra salva com sucesso! ")
 }
 
 function listar_obras() {
@@ -105,7 +105,7 @@ function listar_obras() {
 
 function pesquisar_cadastrada() {
 
-let busca=prompt("Digite o nome da obra que deseja procurar")
+let busca=prompt("Digite o nome da obra que deseja procurar: ")
 let encontrada=false
   for (let i = 0;i<obras.length;i++) {
 
@@ -121,7 +121,7 @@ let encontrada=false
     }
 
     if (encontrada == false) {
-        console.log("Obra não encontrada!")
+        console.log("Obra não encontrada! ")
     }
 }
 
@@ -136,16 +136,16 @@ let opcao = ""
         console.log("4 - Procurar obra cadastrada")
         console.log("5 - Sair")
 
-        opcao = prompt("Escolha uma opção:")
+        opcao = prompt("Escolha uma opção: ")
 
         if (opcao == "1") {
 
-            obra = prompt("Você quer ver um filme ou uma série?")
+            obra = prompt("Você quer ver um filme ou uma série? ")
             resposta = obra.toLowerCase()
 
             pesquisar_obra()
 
-            lista = prompt("Você deseja adicionar a obra na lista de desejos?")
+            lista = prompt("Você deseja adicionar a obra na lista de desejos? ")
             resposta1 = lista.toLowerCase()
 
             adicionar_obra()
@@ -165,11 +165,11 @@ let opcao = ""
 
         } else if (opcao == "5") {
 
-            console.log("Programa encerrado!")
+            console.log("Programa encerrado! ")
 
         } else {
 
-            console.log("Opção inválida!")
+            console.log("Opção inválida! ")
         }
     }
 }
